@@ -22,6 +22,14 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label fx:id="currentScoreLabel" text="Score" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
       <GridPane GridPane.rowIndex="1">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -50,5 +58,13 @@
                </GridPane.margin></Button>
          </children>
       </GridPane>
+      <Label fx:id="extraChancesLabel" text="Extra chanser: 2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
    </children>
 </GridPane>

@@ -6,6 +6,7 @@ import java.util.Random;
 import com.mirre.test.utils.Answer;
 import com.mirre.test.utils.Question;
 import com.mirre.test.utils.Randomizer;
+import com.mirre.test.utils.StringUtils;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,8 +18,9 @@ public class QuestionViewController {
 	public Button firstAnswer, secondAnswer, thirdAnswer, fourthAnswer;
 	
 	@FXML
-	private Label currentQuestionLabel;
+	private Label currentQuestionLabel, currentScoreLabel, extraChancesLabel;
 	
+	private int currentScore = 0, extraChances = 2;
 	private Question currentQuestion = null;
 	private List<Question> questions;
 	
@@ -28,36 +30,56 @@ public class QuestionViewController {
 	public void initialize(){
 		firstAnswer.setOnAction((event) -> {
 			if(((Answer)firstAnswer.getUserData()).isCorrect()){
-				System.out.println("Correct Answer");
-				nextQuestion();
+				onAnswer(true);
 			}else{
-				System.out.println("Wrong Answer");
+				onAnswer(false);
 			}
 		});
 		secondAnswer.setOnAction((event) -> {
 			if(((Answer)secondAnswer.getUserData()).isCorrect()){
-				System.out.println("Correct Answer");
-				nextQuestion();
+				onAnswer(true);
 			}else{
-				System.out.println("Wrong Answer");
+				onAnswer(false);
 			}
 		});
 		thirdAnswer.setOnAction((event) -> {
 			if(((Answer)thirdAnswer.getUserData()).isCorrect()){
-				System.out.println("Correct Answer");
-				nextQuestion();
+				onAnswer(true);
 			}else{
-				System.out.println("Wrong Answer");
+				onAnswer(false);
 			}
 		});
 		fourthAnswer.setOnAction((event) -> {
 			if(((Answer)fourthAnswer.getUserData()).isCorrect()){
-				System.out.println("Correct Answer");
-				nextQuestion();
+				onAnswer(true);
 			}else{
-				System.out.println("Wrong Answer");
+				onAnswer(false);
 			}
 		});
+		updateScoreLabel();
+		updateChanceLabel();
+	}
+	
+	private void onAnswer(boolean correct){
+		if(correct){
+			System.out.println("Correct Answer");
+			currentScore++;
+			updateScoreLabel();
+			nextQuestion();
+		}else{
+			if(extraChances != 0){
+				//Popup om man vill andvända extra försök att svara på frågan.
+			}
+			System.out.println("Wrong Answer");
+		}
+	}
+	
+	private void updateScoreLabel(){
+		currentScoreLabel.setText(StringUtils.stringifyIntegers("" + currentScore + " poäng"));
+	}
+	
+	private void updateChanceLabel(){
+		currentScoreLabel.setText("Extra chanser: " + extraChances);
 	}
 	
 	public void supplyQuestions(List<Question> questions){
